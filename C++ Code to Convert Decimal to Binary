@@ -1,0 +1,73 @@
+// Program that converts Decimals to Binary
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+// binary function definition. called from main. accepts user integer input, does not return a value
+void binary (int n)
+{
+    // declaring array "result" and bit placeholder "nBits"
+    int result[64];
+    int nBits=0;
+    int i;
+    
+    // if N is negative, print out a minus sign, take absolute value of n, continue in function
+    if (n < 0)
+    {
+        printf("-");
+        n=-n;
+    }
+    
+    // if N = 0, print 0 and exit function
+    if (n == 0)
+    {
+        printf ("0");
+        return;
+    }
+    
+    // while loop that will terminate once N = 0
+    while (n > 0)
+    {
+        // checking if N is even. if even, record a 0 
+        // divide N by 2, move left
+        if (n % 2 == 0)
+        {
+            result[nBits] = 0;
+            n = n/2;
+        }
+        
+        // if n is not even, it's odd, record a 1
+        // reset N = (N-1)/2, move left
+        else
+        {
+            result[nBits]=1;
+            n = n-1;
+            n=n/2;
+        }
+        nBits++;
+        
+        
+    }
+    
+    //print binary number!
+    for (i = nBits-1; i >=0; i--)
+    {
+        printf("%d", result[i]);
+    }
+    printf ("\n");
+    
+}
+
+int main()
+{
+    
+    // request user input
+    int N;
+    cout << "Please enter the number you would like to convert to binary:" << "\n" ;
+    cin >> N;
+    
+    // function call to binary, pass in user input
+    binary (N);
+}
+
